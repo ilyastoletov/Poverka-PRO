@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ПоверкаПРО</string>
+    <string name="password_text_field_label">Пароль</string>
+    <string name="login_text_field_label">Логин</string>
+    <string name="auth_screen_title">Вход</string>
+    <string name="login_button">ВОЙТИ</string>
+</resources>
