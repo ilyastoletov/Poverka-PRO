@@ -9,6 +9,7 @@ private val ColorScheme = lightColorScheme(
     primary = Color.White,
     secondary = Color(0xFF52A6FF),
     onSecondary = Color.White,
+    onSurface = Color(0xFF1D1B20),
     outlineVariant = Color(0x1A52A6FF),
     onSurfaceVariant = Color(0xFF49454F)
 )

@@ -1,4 +1,4 @@
-package com.poverka.pro.presentation.feature.auth
+package com.poverka.pro.presentation.feature.auth.ui
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -7,8 +7,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -21,24 +26,41 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.poverka.domain.feature.auth.model.Credentials
 import com.poverka.pro.R
-import com.poverka.pro.presentation.feature.auth.components.PasswordTextField
-import com.poverka.pro.presentation.feature.shared.FilledButton
+import com.poverka.pro.presentation.feature.auth.ui.components.PasswordTextField
+import com.poverka.pro.presentation.feature.auth.viewmodel.AuthContract
+import com.poverka.pro.presentation.feature.auth.viewmodel.AuthViewModel
+import com.poverka.pro.presentation.feature.shared.LabelText
 import com.poverka.pro.presentation.feature.shared.PButton
 import com.poverka.pro.presentation.feature.shared.PTextField
 import com.poverka.pro.presentation.feature.shared.PTopBar
 import com.poverka.pro.presentation.theme.PoverkaTheme
 
 @Composable
-fun AuthScreen() {
+fun AuthScreen(
+    viewModel: AuthViewModel,
+    openHomeScreen: () -> Unit
+) {
+
+    val enableButtonLoading by viewModel.enableButtonLoading.collectAsState()
+
+    LaunchedEffect(viewModel.effect) {
+        viewModel.effect.collect {
+            if (it is AuthContract.Effect.OpenHomeScreen) {
+                openHomeScreen()
+            }
+        }
+    }
 
     Content(
-        onLogin = {}
+        buttonLoading = enableButtonLoading,
+        onLogin = { viewModel.handleEvent(AuthContract.Event.Login(it)) }
     )
 
 }
 
 @Composable
 private fun Content(
+    buttonLoading: Boolean,
     onLogin: (Credentials) -> Unit
 ) {
     var loginInput by remember { mutableStateOf("") }
@@ -46,7 +68,7 @@ private fun Content(
 
     val loginButtonEnabled by remember {
         derivedStateOf {
-            loginInput.isNotEmpty() && passwordInput.isNotEmpty()
+            loginInput.isNotEmpty() && passwordInput.isNotEmpty() && !buttonLoading
         }
     }
 
@@ -86,16 +108,25 @@ private fun Content(
             Spacer(
                 modifier = Modifier.height(60.dp)
             )
-            FilledButton(
+            PButton(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 60.dp),
                 enabled = loginButtonEnabled,
-                label = stringResource(R.string.login_button),
-                onClick = {
-                    onLogin.invoke(Credentials(loginInput, passwordInput))
+                onClick = { onLogin.invoke(Credentials(loginInput, passwordInput)) }
+            ) {
+                if (buttonLoading) {
+                    CircularProgressIndicator(
+                        modifier = Modifier.size(20.dp),
+                        strokeWidth = 2.dp,
+                        color = MaterialTheme.colorScheme.primary
+                    )
+                } else {
+                    LabelText(
+                        text = stringResource(R.string.login_button)
+                    )
                 }
-            )
+            }
         }
     }
 }
@@ -105,6 +136,7 @@ private fun Content(
 private fun AuthScreenPreview() {
     PoverkaTheme {
         Content(
+            buttonLoading = false,
             onLogin = {}
         )
     }

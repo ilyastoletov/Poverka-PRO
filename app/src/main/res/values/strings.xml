@@ -4,4 +4,11 @@
     <string name="login_text_field_label">Логин</string>
     <string name="auth_screen_title">Вход</string>
     <string name="login_button">ВОЙТИ</string>
+    <string name="home_title">Главная</string>
+    <string name="current_checkup_title">Текущая поверка</string>
+    <string name="verifier_menu_item">Поверитель</string>
+    <string name="verification_tools_menu_item">Средства поверки</string>
+    <string name="environmental_data_menu_item">Параметры среды</string>
+    <string name="checkup_date">Дата поверки: %1$s</string>
+    <string name="checkup_protocol_id">Протокол №: %1$s</string>
 </resources>

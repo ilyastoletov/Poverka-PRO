@@ -22,3 +22,4 @@ dependencyResolutionManagement {
 rootProject.name = "PoverkaPRO-2"
 include(":app")
 include(":domain")
+include(":data")
