@@ -7,9 +7,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -29,9 +26,8 @@ import com.poverka.pro.R
 import com.poverka.pro.presentation.feature.auth.ui.components.PasswordTextField
 import com.poverka.pro.presentation.feature.auth.viewmodel.AuthContract
 import com.poverka.pro.presentation.feature.auth.viewmodel.AuthViewModel
-import com.poverka.pro.presentation.feature.shared.LabelText
-import com.poverka.pro.presentation.feature.shared.PButton
-import com.poverka.pro.presentation.feature.shared.PTextField
+import com.poverka.pro.presentation.feature.shared.FilledLoaderButton
+import com.poverka.pro.presentation.feature.shared.text.PTextField
 import com.poverka.pro.presentation.feature.shared.PTopBar
 import com.poverka.pro.presentation.theme.PoverkaTheme
 
@@ -108,25 +104,15 @@ private fun Content(
             Spacer(
                 modifier = Modifier.height(60.dp)
             )
-            PButton(
+            FilledLoaderButton(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 60.dp),
                 enabled = loginButtonEnabled,
+                isLoading = buttonLoading,
+                label = stringResource(R.string.login_button),
                 onClick = { onLogin.invoke(Credentials(loginInput, passwordInput)) }
-            ) {
-                if (buttonLoading) {
-                    CircularProgressIndicator(
-                        modifier = Modifier.size(20.dp),
-                        strokeWidth = 2.dp,
-                        color = MaterialTheme.colorScheme.primary
-                    )
-                } else {
-                    LabelText(
-                        text = stringResource(R.string.login_button)
-                    )
-                }
-            }
+            )
         }
     }
 }

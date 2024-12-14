@@ -15,16 +15,22 @@ import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.poverka.pro.presentation.feature.auth.ui.AuthScreen
+import com.poverka.pro.presentation.feature.environmentData.ui.EnvironmentDataScreen
 import com.poverka.pro.presentation.feature.home.ui.HomeScreen
 import com.poverka.pro.presentation.feature.navigation.bottombar.BottomNavigationBar
 import com.poverka.pro.presentation.feature.navigation.screen.NavGraph
 import com.poverka.pro.presentation.feature.navigation.screen.Screen
 import com.poverka.pro.presentation.feature.snackbar.host.SnackbarHolder
+import com.poverka.pro.presentation.feature.verificationTools.navhost.VerificationToolsNavHost
+import com.poverka.pro.presentation.feature.verifier.ui.VerifierDataScreen
 import com.poverka.pro.presentation.theme.PoverkaTheme
 import dagger.hilt.android.AndroidEntryPoint
 import dev.olshevski.navigation.reimagined.NavBackHandler
 import dev.olshevski.navigation.reimagined.NavHost
+import dev.olshevski.navigation.reimagined.navEntry
 import dev.olshevski.navigation.reimagined.navigate
+import dev.olshevski.navigation.reimagined.pop
+import dev.olshevski.navigation.reimagined.popUpTo
 import dev.olshevski.navigation.reimagined.rememberNavController
 import kotlinx.coroutines.flow.collectLatest
 import javax.inject.Inject
@@ -46,7 +52,6 @@ class MainActivity : ComponentActivity() {
 
                 val snackbarHostState = remember { SnackbarHostState() }
 
-                // TODO: Test snackbar
                 LaunchedEffect(Unit) {
                     snackbarHolder.snackbarMessage.collectLatest { message ->
                         message?.let { snackbarHostState.showSnackbar(it) }
@@ -113,11 +118,37 @@ class MainActivity : ComponentActivity() {
                                 )
                             }
 
+                            is NavGraph.VerifierData -> {
+                                VerifierDataScreen(
+                                    viewModel = hiltViewModel(),
+                                    onBack = { navController.pop() }
+                                )
+                            }
+
+                            is NavGraph.EnvironmentData -> {
+                                EnvironmentDataScreen(
+                                    viewModel = hiltViewModel(),
+                                    onBack = { navController.pop() }
+                                )
+                            }
+
+                            is NavGraph.VerificationTools -> {
+                                VerificationToolsNavHost(
+                                    onBackToHomeScreen = {
+                                        val popUpStatus = navController.popUpTo { it is NavGraph.Home }
+
+                                        // If popUp operation did not succeeded, force open home
+                                        if (!popUpStatus) {
+                                            navController.setNewBackstack(
+                                                listOf(navEntry(NavGraph.Home))
+                                            )
+                                        }
+                                    }
+                                )
+                            }
+
                             is NavGraph.CheckupDetails -> {}
                             is NavGraph.CurrentCheckup -> {}
-                            is NavGraph.EnvironmentData -> {}
-                            is NavGraph.VerificationTools -> {}
-                            is NavGraph.VerifierData -> {}
                         }
                     }
                 }

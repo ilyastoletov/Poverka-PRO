@@ -1,3 +1,5 @@
 package com.poverka.pro.presentation.feature.navigation.screen
 
-sealed interface Screen
+import android.os.Parcelable
+
+sealed interface Screen : Parcelable

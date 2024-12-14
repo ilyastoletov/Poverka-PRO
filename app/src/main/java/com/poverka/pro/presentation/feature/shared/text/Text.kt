@@ -1,4 +1,4 @@
-package com.poverka.pro.presentation.feature.shared
+package com.poverka.pro.presentation.feature.shared.text
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable

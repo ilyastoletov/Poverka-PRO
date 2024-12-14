@@ -60,12 +60,12 @@ private fun CheckupItem(
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .background(
-                color = MaterialTheme.colorScheme.primary,
+            .shadow(
+                elevation = 3.dp,
                 shape = RoundedCornerShape(12.dp)
             )
-            .shadow(
-                elevation = 2.dp,
+            .background(
+                color = MaterialTheme.colorScheme.primary,
                 shape = RoundedCornerShape(12.dp)
             )
             .padding(

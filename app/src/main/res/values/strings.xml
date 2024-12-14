@@ -11,4 +11,26 @@
     <string name="environmental_data_menu_item">Параметры среды</string>
     <string name="checkup_date">Дата поверки: %1$s</string>
     <string name="checkup_protocol_id">Протокол №: %1$s</string>
+    <string name="verifier_data_title">Данные поверителя</string>
+    <string name="save_button">СОХРАНИТЬ</string>
+    <string name="verification_tools_title">Средства поверки</string>
+    <string name="tool_photo_recapture_instruction">Проверьте корректность фотографии. При необходимости сделать фото заново нажмите “ПЕРЕСНЯТЬ ФОТО”</string>
+    <string name="tool_photo_stage_title">Этап %1$s: %2$s</string>
+    <string name="take_picture_button">СДЕЛАТЬ ФОТО</string>
+    <string name="recapture_button">ПЕРЕСНЯТЬ ФОТО</string>
+    <string name="full_name_text_field_label">ФИО</string>
+    <string name="snils_number_label">СНИЛС</string>
+    <string name="reference_registration_number_label">Регистрационный номер</string>
+    <string name="reference_factory_number_label">Заводской номер</string>
+    <string name="reference_data_title">Этап 1: Эталон</string>
+    <string name="reference_data_subtitle">Внесите информацию об эталоне</string>
+    <string name="environment_data_title">Параметры окружающей среды</string>
+    <string name="environment_air_temperature_label">Температура воздуха, °С</string>
+    <string name="environment_water_temperature_label">Температура воды, °С</string>
+    <string name="environment_air_humidity_label">Влажность воздуха, %</string>
+    <string name="environment_air_pressure_label">Атмосферное давление, кПа</string>
+    <string name="environment_confirmation_dialog_title">Подтверждаете отправку данных?</string>
+    <string name="environment_confirmation_dialog_text">Пожалуйста, убедитесь в том, что вы заполнили все поля верно - изменить данные не получится</string>
+    <string name="confirm_button">Да</string>
+    <string name="decline_button">Отменить</string>
 </resources>

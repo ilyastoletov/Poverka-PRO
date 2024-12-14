@@ -18,7 +18,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.poverka.pro.R
-import com.poverka.pro.presentation.feature.shared.PTextField
+import com.poverka.pro.presentation.feature.shared.text.PTextField
 import com.poverka.pro.presentation.theme.PoverkaTheme
 
 @Composable

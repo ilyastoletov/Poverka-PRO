@@ -14,6 +14,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.sp
 import com.poverka.pro.R
 
@@ -22,6 +23,7 @@ import com.poverka.pro.R
 fun PTopBar(
     modifier: Modifier = Modifier,
     title: String,
+    titleFontSize: TextUnit = 22.sp,
     enableBackButton: Boolean,
     onBack: () -> Unit = {},
     actions: @Composable RowScope.() -> Unit = {},
@@ -31,7 +33,7 @@ fun PTopBar(
         title = {
             Text(
                 text = title,
-                fontSize = 22.sp,
+                fontSize = titleFontSize,
                 color = Color.White,
                 fontWeight = FontWeight.Normal
             )

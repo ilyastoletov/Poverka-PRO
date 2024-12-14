@@ -1,13 +1,16 @@
-package com.poverka.pro.presentation.feature.shared
+package com.poverka.pro.presentation.feature.shared.text
 
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
@@ -24,12 +27,17 @@ fun PTextField(
     modifier: Modifier = Modifier,
     labelText: String = "",
     trailing: @Composable () -> Unit = {},
+    maxLength: Int = Int.MAX_VALUE,
     visualTransformation: VisualTransformation = VisualTransformation.None,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
 ) {
     TextField(
         value = value,
-        onValueChange = onValueChange,
+        onValueChange = {
+            if (it.length <= maxLength) {
+                onValueChange(it)
+            }
+        },
         modifier = modifier,
         label = {
             Text(
@@ -40,6 +48,7 @@ fun PTextField(
             )
         },
         trailingIcon = trailing,
+        singleLine = true,
         visualTransformation = visualTransformation,
         keyboardOptions = keyboardOptions,
         colors = TextFieldDefaults.colors(
@@ -57,10 +66,12 @@ fun PTextField(
 @Composable
 private fun PTextFieldPreview() {
     PoverkaTheme {
+        var input by remember { mutableStateOf("Input") }
+
         PTextField(
             modifier = Modifier.padding(12.dp),
-            value = "some input",
-            onValueChange = {},
+            value = input,
+            onValueChange = { input = it },
             trailing = {},
             labelText = "Test text field"
         )
