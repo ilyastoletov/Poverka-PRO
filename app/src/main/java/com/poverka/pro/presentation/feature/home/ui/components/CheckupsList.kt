@@ -22,7 +22,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.poverka.domain.feature.home.Checkup
+import com.poverka.domain.feature.checkup.model.Checkup
 import com.poverka.domain.util.Mock
 import com.poverka.pro.R
 import com.poverka.pro.presentation.theme.PoverkaTheme
@@ -97,7 +97,7 @@ private fun CheckupItem(
 private fun CheckupsListPreview() {
     PoverkaTheme {
         CheckupsList(
-            checkups = Mock.testCheckups,
+            checkups = Mock.demoCheckups,
             onClickCheckupItem = {}
         )
     }

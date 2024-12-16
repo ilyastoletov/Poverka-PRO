@@ -33,4 +33,22 @@
     <string name="environment_confirmation_dialog_text">Пожалуйста, убедитесь в том, что вы заполнили все поля верно - изменить данные не получится</string>
     <string name="confirm_button">Да</string>
     <string name="decline_button">Отменить</string>
+    <string name="checkup_info_meter_id">Счетчик №%1$s</string>
+    <string name="checkup_results">Результаты поверки</string>
+    <string name="checkup_client">Заказчик</string>
+    <string name="client_full_name">ФИО: %1$s</string>
+    <string name="client_postal_code">Индекс: %1$s</string>
+    <string name="client_city">Город: %1$s</string>
+    <string name="client_street">Улица: %1$s</string>
+    <string name="client_house">Дом: %1$s</string>
+    <string name="client_flat">Квартира/офис: %1$s</string>
+    <string name="checkup_meter">Счетчик</string>
+    <string name="meter_water_supply">Тип водоснабжения: %1$s</string>
+    <string name="meter_registration_id">Рег. № СИ в ФИФ: %1$s</string>
+    <string name="meter_release_year">Год выпуска: %1$s</string>
+    <string name="meter_modification">Модицификация: %1$s</string>
+    <string name="meter_factory_number">Заводской №: %1$s</string>
+    <string name="meter_position">Положение счетчика: %1$s</string>
+    <string name="meter_visual_inspection">Внешний осмотр: %1$s</string>
+    <string name="checkup_measurement_number">Измерение №%1$s</string>
 </resources>

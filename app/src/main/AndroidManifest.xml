@@ -16,7 +16,7 @@
         
         <provider
             android:authorities="com.poverka.pro.fileprovider"
-            android:name=".presentation.feature.shared.fileProvider.PhotoFileProvider"
+            android:name=".presentation.provider.PhotoFileProvider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

@@ -15,6 +15,7 @@ import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.poverka.pro.presentation.feature.auth.ui.AuthScreen
+import com.poverka.pro.presentation.feature.checkup.ui.CheckupInfoScreen
 import com.poverka.pro.presentation.feature.environmentData.ui.EnvironmentDataScreen
 import com.poverka.pro.presentation.feature.home.ui.HomeScreen
 import com.poverka.pro.presentation.feature.navigation.bottombar.BottomNavigationBar
@@ -147,7 +148,14 @@ class MainActivity : ComponentActivity() {
                                 )
                             }
 
-                            is NavGraph.CheckupDetails -> {}
+                            is NavGraph.CheckupDetails -> {
+                                CheckupInfoScreen(
+                                    id = destination.protocolId,
+                                    viewModel = hiltViewModel(),
+                                    onBack = { navController.pop() }
+                                )
+                            }
+
                             is NavGraph.CurrentCheckup -> {}
                         }
                     }

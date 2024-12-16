@@ -1,4 +1,4 @@
-package com.poverka.pro.presentation.feature.shared.fileProvider
+package com.poverka.pro.presentation.provider
 
 import android.content.Context
 import android.net.Uri

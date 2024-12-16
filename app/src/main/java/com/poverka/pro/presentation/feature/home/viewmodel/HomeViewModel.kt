@@ -1,7 +1,7 @@
 package com.poverka.pro.presentation.feature.home.viewmodel
 
 import androidx.lifecycle.viewModelScope
-import com.poverka.domain.feature.home.Checkup
+import com.poverka.domain.feature.checkup.model.Checkup
 import com.poverka.domain.util.Mock
 import com.poverka.pro.presentation.feature.base.BaseViewModel
 import com.poverka.pro.presentation.feature.snackbar.host.SnackbarHolder
@@ -51,7 +51,7 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             setState(HomeContract.State.Loading)
             delay(1500)
-            _checkups.emit(Mock.testCheckups)
+            _checkups.emit(Mock.demoCheckups)
             setState(HomeContract.State.Loaded)
         }
     }

@@ -43,7 +43,7 @@ import androidx.compose.ui.unit.sp
 import com.poverka.pro.R
 import com.poverka.pro.presentation.feature.shared.FilledButton
 import com.poverka.pro.presentation.feature.shared.GhostButton
-import com.poverka.pro.presentation.feature.shared.fileProvider.PhotoFileProvider
+import com.poverka.pro.presentation.provider.PhotoFileProvider
 import com.poverka.pro.presentation.feature.verificationTools.model.Stage
 import com.poverka.pro.presentation.feature.verificationTools.viewmodel.VerificationToolsSharedViewModel
 
