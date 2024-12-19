@@ -1,4 +1,4 @@
-package com.poverka.pro.presentation.feature.base
+package com.poverka.pro.presentation.core.feature
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

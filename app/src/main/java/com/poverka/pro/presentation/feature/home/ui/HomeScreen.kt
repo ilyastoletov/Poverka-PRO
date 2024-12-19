@@ -3,11 +3,16 @@ package com.poverka.pro.presentation.feature.home.ui
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.pullrefresh.PullRefreshIndicator
+import androidx.compose.material.pullrefresh.pullRefresh
+import androidx.compose.material.pullrefresh.rememberPullRefreshState
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.MaterialTheme.colorScheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -15,7 +20,9 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
@@ -26,7 +33,8 @@ import com.poverka.pro.presentation.feature.home.viewmodel.HomeContract
 import com.poverka.pro.presentation.feature.home.viewmodel.HomeViewModel
 import com.poverka.pro.presentation.feature.shared.LoadingScreen
 import com.poverka.pro.presentation.feature.shared.PTopBar
-import com.poverka.pro.presentation.feature.shared.PullRefreshWrapper
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 
 @Composable
@@ -77,6 +85,45 @@ fun HomeScreen(
 
             }
         }
+    }
+
+}
+
+@OptIn(ExperimentalMaterialApi::class)
+@Composable
+private fun PullRefreshWrapper(
+    modifier: Modifier = Modifier,
+    onRefresh: () -> Unit,
+    content: @Composable () -> Unit
+) {
+    val scope = rememberCoroutineScope()
+
+    var refreshing by remember { mutableStateOf(false) }
+    val state = rememberPullRefreshState(
+        refreshing = refreshing,
+        onRefresh = {
+            onRefresh()
+            scope.launch {
+                refreshing = true
+                delay(1500L)
+                refreshing = false
+            }
+        }
+    )
+
+    Box(
+        modifier = modifier
+            .fillMaxSize()
+            .pullRefresh(state)
+    ) {
+        content.invoke()
+        PullRefreshIndicator(
+            modifier = Modifier.align(Alignment.TopCenter),
+            contentColor = colorScheme.secondary,
+            backgroundColor = colorScheme.primary,
+            refreshing = refreshing,
+            state = state
+        )
     }
 
 }

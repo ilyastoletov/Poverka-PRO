@@ -1,5 +1,7 @@
 package com.poverka.pro.presentation.feature.shared.text
 
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.MaterialTheme
@@ -20,13 +22,15 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.poverka.pro.presentation.theme.PoverkaTheme
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun PTextField(
     value: String,
     onValueChange: (String) -> Unit,
     modifier: Modifier = Modifier,
     labelText: String = "",
-    trailing: @Composable () -> Unit = {},
+    readOnly: Boolean = false,
+    trailing: (@Composable () -> Unit)? = null,
     maxLength: Int = Int.MAX_VALUE,
     visualTransformation: VisualTransformation = VisualTransformation.None,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
@@ -43,11 +47,14 @@ fun PTextField(
             Text(
                 text = labelText,
                 fontSize = 12.sp,
+                maxLines = 1,
                 fontWeight = FontWeight.Normal,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.basicMarquee()
             )
         },
         trailingIcon = trailing,
+        readOnly = readOnly,
         singleLine = true,
         visualTransformation = visualTransformation,
         keyboardOptions = keyboardOptions,

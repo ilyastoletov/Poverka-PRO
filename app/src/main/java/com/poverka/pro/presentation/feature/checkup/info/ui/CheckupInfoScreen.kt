@@ -1,4 +1,4 @@
-package com.poverka.pro.presentation.feature.checkup.ui
+package com.poverka.pro.presentation.feature.checkup.info.ui
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -29,9 +29,9 @@ import com.poverka.domain.feature.checkup.model.client.Client
 import com.poverka.domain.feature.checkup.model.meter.MeterInfo
 import com.poverka.domain.util.Mock
 import com.poverka.pro.R
-import com.poverka.pro.presentation.feature.checkup.ui.component.MeasurementDataTable
-import com.poverka.pro.presentation.feature.checkup.viewmodel.CheckupInfoContract
-import com.poverka.pro.presentation.feature.checkup.viewmodel.CheckupInfoViewModel
+import com.poverka.pro.presentation.feature.checkup.info.ui.component.MeasurementDataTable
+import com.poverka.pro.presentation.feature.checkup.info.viewmodel.CheckupInfoContract
+import com.poverka.pro.presentation.feature.checkup.info.viewmodel.CheckupInfoViewModel
 import com.poverka.pro.presentation.feature.shared.LoadingScreen
 import com.poverka.pro.presentation.feature.shared.PTopBar
 import com.poverka.pro.presentation.theme.PoverkaTheme

@@ -17,6 +17,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -86,6 +87,15 @@ private fun Content(
     var airHumidityInput by remember { mutableStateOf("") }
     var airPressureInput by remember { mutableStateOf("") }
 
+    val enableSaveButton by remember {
+        derivedStateOf {
+            airTemperatureInput.isNotEmpty()
+                    && waterTemperatureInput.isNotEmpty()
+                    && airHumidityInput.isNotEmpty()
+                    && airPressureInput.isNotEmpty()
+        }
+    }
+
     var showConfirmationDialog by remember { mutableStateOf(false) }
 
     Column(
@@ -142,6 +152,7 @@ private fun Content(
         FilledButton(
             modifier = Modifier.width(200.dp),
             label = stringResource(R.string.save_button),
+            enabled = enableSaveButton,
             onClick = { showConfirmationDialog = true }
         )
     }

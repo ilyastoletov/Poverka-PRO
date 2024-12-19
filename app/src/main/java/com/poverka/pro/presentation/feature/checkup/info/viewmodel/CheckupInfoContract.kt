@@ -1,7 +1,8 @@
-package com.poverka.pro.presentation.feature.checkup.viewmodel
+package com.poverka.pro.presentation.feature.checkup.info.viewmodel
 
 import com.poverka.domain.feature.checkup.model.Checkup
-import com.poverka.pro.presentation.feature.base.*
+import com.poverka.pro.presentation.core.feature.ViewEvent
+import com.poverka.pro.presentation.core.feature.ViewState
 
 object CheckupInfoContract {
 

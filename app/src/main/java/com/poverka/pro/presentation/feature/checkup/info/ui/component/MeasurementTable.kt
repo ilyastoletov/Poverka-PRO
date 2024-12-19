@@ -1,6 +1,5 @@
-package com.poverka.pro.presentation.feature.checkup.ui.component
+package com.poverka.pro.presentation.feature.checkup.info.ui.component
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -65,13 +64,13 @@ fun MeasurementDataTable(
                 TableCell(
                     weight = 0.7f,
                     content = item.first,
-                    boldText = index == 0,
+                    boldText = isFirstItem,
                     shape = leftCellShape
                 )
                 TableCell(
                     weight = 0.3f,
                     content = item.second,
-                    boldText = index == 0,
+                    boldText = isFirstItem,
                     shape = rightCellShape
                 )
             }
@@ -80,7 +79,6 @@ fun MeasurementDataTable(
 
 }
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun RowScope.TableCell(
     weight: Float,

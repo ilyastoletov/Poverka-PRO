@@ -3,7 +3,7 @@ package com.poverka.pro.presentation.feature.home.viewmodel
 import androidx.lifecycle.viewModelScope
 import com.poverka.domain.feature.checkup.model.Checkup
 import com.poverka.domain.util.Mock
-import com.poverka.pro.presentation.feature.base.BaseViewModel
+import com.poverka.pro.presentation.core.feature.BaseViewModel
 import com.poverka.pro.presentation.feature.snackbar.host.SnackbarHolder
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay

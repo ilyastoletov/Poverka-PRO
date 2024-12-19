@@ -22,6 +22,7 @@ object Mock {
     )
 
     val demoMeter = MeterInfo(
+        protocolId = null,
         registrationId = "0098881",
         waterSupply = WaterSupply.HOT,
         releaseYear = "2012",

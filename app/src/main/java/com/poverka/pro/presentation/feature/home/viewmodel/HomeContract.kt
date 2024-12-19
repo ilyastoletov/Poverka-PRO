@@ -1,6 +1,7 @@
 package com.poverka.pro.presentation.feature.home.viewmodel
 
-import com.poverka.pro.presentation.feature.base.*
+import com.poverka.pro.presentation.core.feature.ViewEvent
+import com.poverka.pro.presentation.core.feature.ViewState
 
 object HomeContract {
 

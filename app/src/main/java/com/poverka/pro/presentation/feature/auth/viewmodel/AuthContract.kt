@@ -1,9 +1,9 @@
 package com.poverka.pro.presentation.feature.auth.viewmodel
 
 import com.poverka.domain.feature.auth.model.Credentials
-import com.poverka.pro.presentation.feature.base.ViewEffect
-import com.poverka.pro.presentation.feature.base.ViewEvent
-import com.poverka.pro.presentation.feature.base.ViewState
+import com.poverka.pro.presentation.core.feature.ViewEffect
+import com.poverka.pro.presentation.core.feature.ViewEvent
+import com.poverka.pro.presentation.core.feature.ViewState
 
 object AuthContract {
 

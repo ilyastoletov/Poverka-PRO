@@ -1,7 +1,9 @@
 package com.poverka.pro.presentation.feature.verifier.viewmodel
 
 import com.poverka.domain.feature.verifier.VerifierData
-import com.poverka.pro.presentation.feature.base.*
+import com.poverka.pro.presentation.core.feature.ViewEffect
+import com.poverka.pro.presentation.core.feature.ViewEvent
+import com.poverka.pro.presentation.core.feature.ViewState
 
 object VerifierDataContract {
 

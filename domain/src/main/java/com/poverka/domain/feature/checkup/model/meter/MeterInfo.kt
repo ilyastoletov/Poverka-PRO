@@ -1,6 +1,7 @@
 package com.poverka.domain.feature.checkup.model.meter
 
 data class MeterInfo(
+    val protocolId: String?,
     val registrationId: String,
     val waterSupply: WaterSupply,
     val releaseYear: String,

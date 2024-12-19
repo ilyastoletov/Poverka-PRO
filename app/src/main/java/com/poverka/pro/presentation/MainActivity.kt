@@ -15,7 +15,8 @@ import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.poverka.pro.presentation.feature.auth.ui.AuthScreen
-import com.poverka.pro.presentation.feature.checkup.ui.CheckupInfoScreen
+import com.poverka.pro.presentation.feature.checkup.current.navhost.CurrentCheckupNavHost
+import com.poverka.pro.presentation.feature.checkup.info.ui.CheckupInfoScreen
 import com.poverka.pro.presentation.feature.environmentData.ui.EnvironmentDataScreen
 import com.poverka.pro.presentation.feature.home.ui.HomeScreen
 import com.poverka.pro.presentation.feature.navigation.bottombar.BottomNavigationBar
@@ -76,9 +77,19 @@ class MainActivity : ComponentActivity() {
                         if (enableNavigationBar) {
                             BottomNavigationBar(
                                 currentDestination = currentDestination,
-                                onOpenHomeScreen = { navController.navigate(NavGraph.Home) },
+                                onOpenHomeScreen = {
+                                    navController.apply {
+                                        if (!popUpTo { it is NavGraph.Home }) {
+                                            navigate(NavGraph.Home)
+                                        }
+                                    }
+                                },
                                 onOpenCurrentCheckupScreen = {
-                                    navController.navigate(NavGraph.CurrentCheckup)
+                                    navController.apply {
+                                        if (!popUpTo { it is NavGraph.CurrentCheckup }) {
+                                            navigate(NavGraph.CurrentCheckup)
+                                        }
+                                    }
                                 }
                             )
                         }
@@ -97,7 +108,11 @@ class MainActivity : ComponentActivity() {
                             is NavGraph.Authorization -> {
                                 AuthScreen(
                                     viewModel = hiltViewModel(),
-                                    openHomeScreen = { navController.navigate(NavGraph.Home) },
+                                    openHomeScreen = {
+                                        navController.setNewBackstack(
+                                            listOf(navEntry(NavGraph.Home))
+                                        )
+                                    },
                                 )
                             }
 
@@ -136,10 +151,7 @@ class MainActivity : ComponentActivity() {
                             is NavGraph.VerificationTools -> {
                                 VerificationToolsNavHost(
                                     onBackToHomeScreen = {
-                                        val popUpStatus = navController.popUpTo { it is NavGraph.Home }
-
-                                        // If popUp operation did not succeeded, force open home
-                                        if (!popUpStatus) {
+                                        if (!navController.popUpTo { it is NavGraph.Home }) {
                                             navController.setNewBackstack(
                                                 listOf(navEntry(NavGraph.Home))
                                             )
@@ -156,7 +168,15 @@ class MainActivity : ComponentActivity() {
                                 )
                             }
 
-                            is NavGraph.CurrentCheckup -> {}
+                            is NavGraph.CurrentCheckup -> {
+                                CurrentCheckupNavHost(
+                                    openMainScreen = {
+                                        navController.setNewBackstack(
+                                            listOf(navEntry(NavGraph.Home))
+                                        )
+                                    }
+                                )
+                            }
                         }
                     }
                 }
@@ -167,4 +187,3 @@ class MainActivity : ComponentActivity() {
     }
 
 }
-
